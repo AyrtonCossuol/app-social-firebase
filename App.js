@@ -1,21 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import HomeScreen from './src/screens/HomeScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import LoadingScreen from './src/screens/LoadingScreen';
+import RegisterScreen from './src/screens/RegisterScreen';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+import * as firebase from 'firebase';
+
+var firebaseConfig = {
+  apiKey: "AIzaSyCB3P_v2WBkvDwBt8CSAclipgxKWB5Zz24",
+  authDomain: "social-app-test-aa052.firebaseapp.com",
+  databaseURL: "https://social-app-test-aa052.firebaseio.com",
+  projectId: "social-app-test-aa052",
+  storageBucket: "social-app-test-aa052.appspot.com",
+  messagingSenderId: "278682826940",
+  appId: "1:278682826940:web:5ff98bb03a50cd61d0b8b9"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const AppStack = createStackNavigator({
+  Home: HomeScreen
 });
+
+const AuthStack = createStackNavigator({
+  Login: LoginScreen,
+  Register: RegisterScreen
+});
+
+export default createAppContainer(
+  createSwitchNavigator({
+    Loading: LoginScreen,
+    App: AppStack,
+    Auth: AuthStack
+  }, {
+    initialRouteName: 'Loading'
+  })
+);
