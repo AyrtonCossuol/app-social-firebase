@@ -1,40 +1,47 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import HomeScreen from './src/screens/HomeScreen';
+import { Ionicons } from '@expo/vector-icons';
+
 import LoginScreen from './src/screens/LoginScreen';
 import LoadingScreen from './src/screens/LoadingScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 
-import * as firebase from 'firebase';
+import HomeScreen from './src/screens/HomeScreen';
+import MessageScreen from './src/screens/MessageScreen';
+import NotificationScreen from './src/screens/NotificationScreen';
+import PostScreen from './src/screens/PostScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 
-var firebaseConfig = {
-  apiKey: "AIzaSyCB3P_v2WBkvDwBt8CSAclipgxKWB5Zz24",
-  authDomain: "social-app-test-aa052.firebaseapp.com",
-  databaseURL: "https://social-app-test-aa052.firebaseio.com",
-  projectId: "social-app-test-aa052",
-  storageBucket: "social-app-test-aa052.appspot.com",
-  messagingSenderId: "278682826940",
-  appId: "1:278682826940:web:5ff98bb03a50cd61d0b8b9"
-};
+import * as firebase from 'firebase';
+import FirebaseKeys from './configFirebase';
+
+
 // Initialize Firebase
+var firebaseConfig = FirebaseKeys;
 firebase.initializeApp(firebaseConfig);
 
-const AppStack = createStackNavigator({
-  Home: HomeScreen
-});
+const Stack = createStackNavigator();
 
-const AuthStack = createStackNavigator({
-  Login: LoginScreen,
-  Register: RegisterScreen
-});
+function AuthStack() {
+  return (
+    <Stack.Navigator headerMode="none" initialRouteName="Loading">
+      <Stack.Screen name="register" component={RegisterScreen} />
+      <Stack.Screen name="login" component={LoginScreen} />
+    </Stack.Navigator>
+  );
+}
 
-export default createAppContainer(
-  createSwitchNavigator({
-    Loading: LoadingScreen,
-    App: AppStack,
-    Auth: AuthStack
-  }, {
-    initialRouteName: 'Loading'
-  })
-);
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator headerMode="none" mode="modal">
+        <Stack.Screen name="loading" component={LoadingScreen} />
+        <Stack.Screen name="AuthStack" component={AuthStack} />
+        <Stack.Screen name="Post" component={PostScreen} />
+        <Stack.Screen name="Message" component={MessageScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
