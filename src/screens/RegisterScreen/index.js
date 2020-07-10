@@ -7,24 +7,28 @@ import * as firebase from 'firebase';
 
 export default class RegisterScreen extends React.Component {
     state = {
+        name: '',
         email: '',
         password: '',
         errorMessage: null
-    }
+    };
 
-    handleLogin = () => {
-        const { email, password } = this.state;
-
+    handleSignUp = () => {
         firebase
             .auth()
-            .signInWithEmailAndPassword(email, password)
-            .catch(error => this.setState({ errorMessage: error.message }));
+            .createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(userCredentials => {
+                return userCredentials.user.updateProfile({
+                    displayName: this.state.name
+                });
+            })
+            .catch(error => this.setState({ errorMessage: error.message }))
     };
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.greeting}>{`Olaa meu Rei. \nSeja Bem Vindo`}</Text>
+                <Text style={styles.greeting}>{`Olaa. \nCadastre-se Agora`}</Text>
 
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
@@ -32,6 +36,16 @@ export default class RegisterScreen extends React.Component {
 
                 <View style={styles.form}>
                     <View>
+                        <Text style={styles.inputTitle}>Nome Completo</Text>
+                        <TextInput 
+                            style={styles.input} 
+                            autoCapitalize='none' 
+                            onChangeText={name => this.setState({ name })}
+                            value={this.state.name}
+                        />
+                    </View>
+                    
+                    <View style={{ marginTop: 32 }}>
                         <Text style={styles.inputTitle}>Email</Text>
                         <TextInput 
                             style={styles.input} 
@@ -53,16 +67,16 @@ export default class RegisterScreen extends React.Component {
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                    <Text style={{ color: '#fff', fontWeight: '500' }}>Entrar</Text>
+                <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
+                    <Text style={{ color: '#fff', fontWeight: '500' }}>Cadastrar</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
                     style={{ alignSelf: 'center', marginTop: 32 }} 
-                    onPress={() => this.props.navigation.navigate('Register')}
+                    onPress={() => this.props.navigation.navigate('Login')}
                 >
                     <Text style={{ color: '#414959', fontSize: 13 }}>
-                        É novo no App?  <Text style={{ fontWeight: '500', color: '#e9446a' }}>Cadastre-se</Text>
+                        <Text style={{ fontWeight: '500', color: '#e9446a' }}>Login</Text>
                     </Text>
                 </TouchableOpacity>
             </View>
