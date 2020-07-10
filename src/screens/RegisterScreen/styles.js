@@ -12,6 +12,16 @@ export default StyleSheet.create({
         textAlign: 'center'
     },
 
+    avatar: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: '#e1e2e6',
+        marginTop: 48,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },  
+
     errorMessage: {
         height: 72,
         alignItems: 'center',
@@ -50,6 +60,18 @@ export default StyleSheet.create({
         backgroundColor: '#e9446a',
         borderRadius: 4,
         height: 52,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }, 
+
+    back: {
+        position: 'absolute', 
+        top: 24,
+        left: 32,
+        width: 32,
+        height: 32,
+        borderRadius: 16,
+        backgroundColor: 'rgba(21, 22, 48, 0.1)',
         alignItems: 'center',
         justifyContent: 'center'
     }

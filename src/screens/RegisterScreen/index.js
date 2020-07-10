@@ -1,11 +1,16 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
 import * as firebase from 'firebase';
 
 export default class RegisterScreen extends React.Component {
+    static navigationOptions = {
+        headerShown: null
+    };
+
     state = {
         name: '',
         email: '',
@@ -28,7 +33,26 @@ export default class RegisterScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.greeting}>{`Olaa. \nCadastre-se Agora`}</Text>
+                <StatusBar barStyle='light-content' />
+                <Image source={require('../../assets/authHeader.png')} style={{ width: 550,height: 350, marginTop: -70, marginLeft: -50 }} />
+                <Image source={require('../../assets/authHeader.png')} style={{ width: 480, position: 'absolute', bottom: -190, right: -190 }} />
+                
+                <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
+                    <Ionicons name='ios-arrow-round-back' size={32} color='#fff' />
+                </TouchableOpacity>
+
+                <View style={{ position: 'absolute', top: 64, alignItems: 'center', width: '100%' }}>
+                    <Text style={styles.greeting}>{`Olaa. \nCadastre-se Agora`}</Text>
+
+                    <TouchableOpacity style={styles.avatar}>
+                        <Ionicons 
+                            name='ios-add' 
+                            size={40}
+                            color='#fff'
+                            style={{ alignItems: 'center', justifyContent: 'center' }}
+                        />
+                    </TouchableOpacity>
+                </View>
 
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
