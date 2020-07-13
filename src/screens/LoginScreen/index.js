@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation } from 'react-native';
 
 import styles from './styles';
@@ -22,7 +23,14 @@ export default class LoginScreen extends React.Component {
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .catch(error => this.setState({ errorMessage: error.message }));
+            .then(function () {
+                setLoading(false);
+                navigation.navigate("Tab", { screen: "home" });
+            })
+            .catch((err) => {
+                setLoading(false);
+                setError(err.message);
+            });
     };
 
     render() {
