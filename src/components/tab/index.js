@@ -2,12 +2,12 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import Home from "../../screens/HomeScreen";
-import Profile from "../../screens/ProfileScreen";
-import Messages from "../../screens/MessageScreen";
-import Notifications from "../../screens/NotificationScreen";
+import Home from "../../screens/Home";
+import Profile from "../../screens/Profile";
+import Messages from "../../screens/Messages";
+import Notifications from "../../screens/Notifications";
 
-import Load from "../load";
+import Load from "../Load";
 
 const Tab = createBottomTabNavigator();
 
