@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
-import * as firebase from "firebase";
 import {
   View,
   Text,
@@ -13,6 +11,10 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+
+import { Ionicons } from "@expo/vector-icons";
+
+import * as firebase from "firebase";
 
 import getAvatarUrl from "../utils/getImageAdorable";
 
@@ -204,8 +206,8 @@ const styles = StyleSheet.create({
   },
   back: {
     position: "absolute",
-    top: 48,
-    left: 32,
+    top: -170,
+    left: 20,
     width: 32,
     height: 32,
     borderRadius: 16,

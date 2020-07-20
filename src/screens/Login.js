@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import * as firebase from "firebase";
 import {
   View,
   Text,
@@ -12,6 +11,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+
+import * as firebase from "firebase";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -49,7 +50,7 @@ export default function Login() {
 
         <Image
           source={require("../assets/loginLogo.png")}
-          style={{ alignSelf: "center", marginTop: 44 }}
+          style={{ alignSelf: "center", marginTop: 40 }}
         />
 
         <Text
@@ -119,9 +120,9 @@ const styles = StyleSheet.create({
   },
   imageHeaer: {
     position: "absolute",
-    width: 520,
-    height: 349,
-    top: -140,
+    width: 620,
+    height: 449,
+    top: -230,
     right: -150,
   },
   imageFooter: {
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     opacity: 0.4,
     width: 500,
     height: 340,
-    bottom: -220,
+    bottom: -200,
     zIndex: -5,
   },
   greeting: {
