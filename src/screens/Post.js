@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import * as Permissions from "expo-permissions";
-import * as ImagePicker from "expo-image-picker";
-import { Ionicons } from "@expo/vector-icons";
-import Constants from "expo-constants";
-
-import "firebase/firestore";
-
-import Fire from "../components/Fire";
-
 import {
   View,
   Text,
@@ -17,9 +8,19 @@ import {
   Button,
   TextInput,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
 } from "react-native";
+
+import * as Permissions from "expo-permissions";
+import * as ImagePicker from "expo-image-picker";
+import Constants from "expo-constants";
+
+import { Ionicons } from "@expo/vector-icons";
+
+import "firebase/firestore";
+
+import Fire from "../components/Fire";
+
 
 export default function Post() {
   const [text, setText] = useState("");

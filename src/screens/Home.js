@@ -11,6 +11,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  SafeAreaView,
   LayoutAnimation,
 } from "react-native";
 import * as firebase from "firebase";
@@ -42,7 +43,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <SafeAreaView style={styles.header}>
         <View style={{ width: 35, height: 35 }} />
         <Text style={styles.textHeader}>Feed</Text>
         <TouchableOpacity
@@ -50,7 +51,7 @@ export default function Home() {
         >
           <Ionicons name="ios-person-add" size={26} color="#333333" />
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
       {hidden ? (
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
@@ -119,13 +120,6 @@ export default function Home() {
                   </View>
                 </View>
               </View>
-              {index % 5 === 0 && (
-                <AdMobBanner
-                  bannerSize="fullBanner"
-                  adUnitID="ca-app-pub-5014682151271774/3295075815"
-                  servePersonalizedAds
-                />
-              )}
             </>
           )}
         />
@@ -141,7 +135,7 @@ const styles = StyleSheet.create({
   },
   header: {
     width: "100%",
-    paddingTop: 34,
+    paddingTop: 16,
     paddingBottom: 16,
     backgroundColor: "#FFF",
     flexDirection: "row",
